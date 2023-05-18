@@ -2,13 +2,19 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Grid, Box } from '@mui/material';
-import { Typography, Rating } from '@mui/material';
+import { Typography, Rating, Button } from '@mui/material';
+import { useHistory } from 'react-router-dom';
 
 
 
 function Stash() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const products = useSelector(store => store.productList)
+
+    const navToForm = (event) => {
+        history.push('/newproduct');
+    }
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
@@ -18,6 +24,11 @@ function Stash() {
     return (
         <main>
             <h1 className="stash-title">Your Stash!</h1>
+            <Button
+                variant="contained"
+                onClick={navToForm}>
+                Add New Product:
+            </Button>
             <Grid
                 margin={0}
                 xs={2} md={2}

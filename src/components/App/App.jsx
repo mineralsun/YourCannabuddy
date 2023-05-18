@@ -20,8 +20,10 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Stash from '../Stash/stash.jsx';
+import NewProductForm from '../NewProductForm/NewProductForm.jsx';
 
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +64,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path="/stash">
             <Stash />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/newproduct">
+            <NewProductForm />
           </ProtectedRoute>
 
           <ProtectedRoute

@@ -7,6 +7,11 @@ import { FavoriteBorder, Favorite } from '@mui/icons-material';
 
 function NewProductForm() {
     const dispatch = useDispatch();
+    const history = useHistory();
+
+    const navToStash = (event) => {
+        history.pushState('/stash')
+    }
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
@@ -195,7 +200,9 @@ function NewProductForm() {
                     onChange={(event) => handleChangeFor('isFavorite', event.target.value)}
                 />
                 <input
+                    value="Add that shit!"
                     type='submit'
+                    onClick={navToStash}
                 />
             </form>
         </div>
