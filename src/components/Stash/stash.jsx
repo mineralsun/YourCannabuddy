@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { Typography, Rating } from '@mui/material';
+import { Checkbox } from '@mui/material';
+import { FavoriteBorder, Favorite } from '@mui/icons-material';
+
 
 function Stash() {
     const dispatch = useDispatch();
@@ -76,42 +80,140 @@ function Stash() {
                 />
                 <br />
                 <label for="productType">Product Type:</label> <span />
-                <select name="dog-names" id="dog-names">
-                    <option value="Flower">Flower</option>
-                    <option value="Pre-Rolls">Pre-Rolls</option>
-                    <option value="Edibles">Edibles</option>
-                    <option value="Vaporizers">Vaporizers</option>
-                    <option value="Concentrates">Concentrates</option>
-                    <option value="Topicals">Topicals</option>
-                    <option value="Tinctures">Tinctures</option>
+                <select name="productType" id="productType">
+                    <option
+                        name="Flower"
+                        value={newProduct.product_id[1]}
+                        onChange={(event) => handleChangeFor('product_id', event.target.value)}>
+                        Flower
+                    </option>
+                    <option
+                        name="Pre-Rolls"
+                        value={newProduct.product_id[2]}
+                        onChange={(event) => handleChangeFor('product_id', event.target.value)}>
+                        Pre-Rolls
+                    </option>
+                    <option
+                        name="Edibles"
+                        value={newProduct.product_id[3]}
+                        onChange={(event) => handleChangeFor('product_id', event.target.value)}>
+                        Edibles
+                    </option>
+                    <option
+                        name="Vaporizers"
+                        value={newProduct.product_id[4]}
+                        onChange={(event) => handleChangeFor('product_id', event.target.value)}>
+                        Vaporizers
+                    </option>
+                    <option
+                        name="Concentrates"
+                        value={newProduct.product_id[5]}
+                        onChange={(event) => handleChangeFor('product_id', event.target.value)}>
+                        Concentrates
+                    </option>
+                    <option
+                        name="Topicals"
+                        value={newProduct.product_id[6]}
+                        onChange={(event) => handleChangeFor('product_id', event.target.value)}>
+                        Topicals
+                    </option>
+                    <option
+                        name="Tinctures"
+                        value={newProduct.product_id[7]}
+                        onChange={(event) => handleChangeFor('product_id', event.target.value)}>
+                        Tinctures
+                    </option>
                 </select>
                 <br />
-                <input
-                    type='text'
-                    value={newProduct.productName}
-                    placeholder='Product Name'
-                    onChange={(event) => handleChangeFor('product_name', event.target.value)}
+                <Typography component="legend">Rate your product!</Typography>
+                <Rating
+                    name="product rating"
+                    value={newProduct.rating}
+                    onChange={(event) => handleChangeFor('rating', event.target.value)}
                 />
                 <br />
-                <input
+                <textarea
                     type='text'
-                    value={newProduct.productName}
-                    placeholder='Product Name'
-                    onChange={(event) => handleChangeFor('product_name', event.target.value)}
+                    value={newProduct.comments}
+                    placeholder='Additional Comments'
+                    cols="50"
+                    rows="10"
+                    onChange={(event) => handleChangeFor('comments', event.target.value)}
                 />
                 <br />
-                <input
-                    type='text'
-                    value={newProduct.productName}
-                    placeholder='Product Name'
-                    onChange={(event) => handleChangeFor('product_name', event.target.value)}
-                />
+                {/* MAKE SURE TO REPLACE THIS WITH PICTURE ROUTES AT ONE POINT */}
+                <label for="topEffect">Top Effect:</label> <span />
+                <select name="topEffect" id="topEffect">
+                    <option
+                        name="Calm"
+                        value={newProduct.top_effect_id[1]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Calm
+                    </option>
+                    <option
+                        name="Pain-Releaf"
+                        value={newProduct.top_effect_id[2]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Pain-Relief
+                    </option>
+                    <option
+                        name="Clear-Mind"
+                        value={newProduct.top_effect_id[3]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Clear-Mind
+                    </option>
+                    <option
+                        name="Creative"
+                        value={newProduct.top_effect_id[4]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Creative
+                    </option>
+                    <option
+                        name="Energetic"
+                        value={newProduct.top_effect_id[5]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Energetic
+                    </option>
+                    <option
+                        name="Focused"
+                        value={newProduct.top_effect_id[6]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Focused
+                    </option>
+                    <option
+                        name="Happy"
+                        value={newProduct.top_effect_id[7]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Happy
+                    </option>
+                    <option
+                        name="Inspired"
+                        value={newProduct.top_effect_id[8]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Inspired
+                    </option>
+                    <option
+                        name="Relaxed"
+                        value={newProduct.top_effect_id[9]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Relaxed
+                    </option>
+                    <option
+                        name="Sleepy"
+                        value={newProduct.top_effect_id[10]}
+                        onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
+                        Sleepy
+                    </option>
+                </select>
                 <br />
+                <Checkbox 
+                    label={newProduct.isFavorite} 
+                    icon={<FavoriteBorder defaultChecked />} 
+                    checkedIcon={<Favorite />}
+                    onChange={(event) => handleChangeFor('isFavorite', event.target.value)}
+                />
                 <input
-                    type='text'
-                    value={newProduct.productName}
-                    placeholder='Product Name'
-                    onChange={(event) => handleChangeFor('product_name', event.target.value)}
+                    type='submit'
                 />
             </form>
 
