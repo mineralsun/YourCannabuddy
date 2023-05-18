@@ -19,7 +19,6 @@ const store = createStore(
   // tells the saga middleware to use the rootReducer
   // rootSaga contains all of our other reducers
   rootReducer,
-  productList,
   // adds all middleware to our project including saga and logger
   applyMiddleware(...middlewareList),
 );
