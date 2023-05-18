@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 
 import rootReducer from './reducers/_root.reducer'; // imports ./redux/reducers/index.js
 import rootSaga from './sagas/_root.saga'; // imports ./redux/sagas/index.js
-import productList from './reducers/products.reducer.js';
+
 
 const sagaMiddleware = createSagaMiddleware();
 

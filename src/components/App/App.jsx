@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Stash from '../Stash/stash.jsx';
 
 import './App.css';
 
@@ -58,6 +59,9 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/stash">
+            <Stash />
           </ProtectedRoute>
 
           <ProtectedRoute
