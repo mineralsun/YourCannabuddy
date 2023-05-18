@@ -4,6 +4,7 @@ import logger from 'redux-logger';
 
 import rootReducer from './reducers/_root.reducer'; // imports ./redux/reducers/index.js
 import rootSaga from './sagas/_root.saga'; // imports ./redux/sagas/index.js
+import productList from './reducers/products.reducer.js';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +19,7 @@ const store = createStore(
   // tells the saga middleware to use the rootReducer
   // rootSaga contains all of our other reducers
   rootReducer,
+  productList,
   // adds all middleware to our project including saga and logger
   applyMiddleware(...middlewareList),
 );
