@@ -29,6 +29,12 @@ function Stash() {
                 onClick={navToForm}>
                 Add New Product:
             </Button>
+            { 
+                products.length === 0 ? (
+            <div>
+                Time to try some weed and add your products!
+            </div>
+            ) : (
             <Grid
                 margin={0}
                 xs={2} md={2}
@@ -57,6 +63,8 @@ function Stash() {
                     )
                 })}
             </Grid>
+            )
+        }
         </main>
     )
 }

@@ -70,7 +70,7 @@ function NewProductForm() {
                 <select name="productType" id="productType">
                     <option
                         name="Select an type of Product!">
-                            Select a Product Type!
+                        Select a Product Type!
                     </option>
                     <option
                         name="Flower"
@@ -139,7 +139,7 @@ function NewProductForm() {
                 <select name="topEffect" id="topEffect">
                     <option
                         name="Please Select a Top Effect">
-                            Select a Top Effect!
+                        Select a Top Effect!
                     </option>
                     <option
                         name="Calm"
@@ -219,21 +219,21 @@ function NewProductForm() {
     )
 }
 
-   // const addProduct = (event) => {
-    //     event.preventDefault();
-    //     dispatch({
-    //         type: 'ADD_PRODUCT',
-    //         payload: {
-    //             product_name: newProduct.product_name,
-    //             brand_name: newProduct.brand_name,
-    //             product_id: newProduct.product_id,
-    //             rating: newProduct.rating,
-    //             comments: newProduct.comments,
-    //             top_effect_id: newProduct.top_effect_id,
-    //             isFavorite: newProduct.isFavorite
-    //         },
-    //         setNewProduct: setNewProduct
-    //     });
-    // }
+// const addProduct = (event) => {
+//     event.preventDefault();
+//     dispatch({
+//         type: 'ADD_PRODUCT',
+//         payload: {
+//             product_name: newProduct.product_name,
+//             brand_name: newProduct.brand_name,
+//             product_id: newProduct.product_id,
+//             rating: newProduct.rating,
+//             comments: newProduct.comments,
+//             top_effect_id: newProduct.top_effect_id,
+//             isFavorite: newProduct.isFavorite
+//         },
+//         setNewProduct: setNewProduct
+//     });
+// }
 
 export default NewProductForm;
