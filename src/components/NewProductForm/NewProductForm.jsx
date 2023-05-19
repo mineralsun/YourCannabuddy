@@ -10,7 +10,7 @@ function NewProductForm() {
     const history = useHistory();
 
     const navToStash = (event) => {
-        history.pushState('/stash')
+        history.push('/stash')
     }
 
     useEffect(() => {
@@ -69,6 +69,10 @@ function NewProductForm() {
                 <label for="productType">Product Type:</label> <span />
                 <select name="productType" id="productType">
                     <option
+                        name="Select an type of Product!">
+                            Select a Product Type!
+                    </option>
+                    <option
                         name="Flower"
                         value={newProduct.product_id[1]}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
@@ -112,7 +116,9 @@ function NewProductForm() {
                     </option>
                 </select>
                 <br />
-                <Typography component="legend">Rate your product!</Typography>
+                <Typography component="legend">
+                    Rate your product!
+                </Typography>
                 <Rating
                     name="product rating"
                     value={newProduct.rating}
@@ -131,6 +137,10 @@ function NewProductForm() {
                 {/* MAKE SURE TO REPLACE THIS WITH PICTURE ROUTES AT ONE POINT */}
                 <label for="topEffect">Top Effect:</label> <span />
                 <select name="topEffect" id="topEffect">
+                    <option
+                        name="Please Select a Top Effect">
+                            Select a Top Effect!
+                    </option>
                     <option
                         name="Calm"
                         value={newProduct.top_effect_id[1]}
