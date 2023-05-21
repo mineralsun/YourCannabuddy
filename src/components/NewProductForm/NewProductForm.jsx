@@ -18,8 +18,8 @@ function NewProductForm() {
     }, []);
 
     const [newProduct, setNewProduct] = useState({
-        productName: '',
-        brandName: '',
+        product_name: '',
+        brand_name: '',
         product_id: 0,
         rating: 0,
         comments: '',
@@ -39,7 +39,7 @@ function NewProductForm() {
             id: newProduct.id + 1,
             product_name: '',
             brand_name: '',
-            product_id: 0,
+            product_id: newProduct.product_id.value,
             rating: 0,
             comments: '',
             top_effect_id: 0,

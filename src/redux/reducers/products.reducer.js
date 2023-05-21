@@ -7,4 +7,5 @@ const productList = (state = [], action) => {
     }
 };
 
-export default productList;
+
+export default  productList;
