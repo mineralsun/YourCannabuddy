@@ -39,7 +39,7 @@ function NewProductForm() {
             id: newProduct.id + 1,
             product_name: '',
             brand_name: '',
-            product_id: newProduct.product_id.value,
+            product_id: 0,
             rating: 0,
             comments: '',
             top_effect_id: 0,
@@ -66,51 +66,55 @@ function NewProductForm() {
                     onChange={(event) => handleChangeFor('brand_name', event.target.value)}
                 />
                 <br />
-                <label for="productType">Product Type:</label> <span />
-                <select name="productType" id="productType">
+                <label for="productType">Product Type</label> <br />
+                <select 
+                    name="productType" 
+                    id="productType"
+                    value={newProduct.product_id}
+                    onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                     <option
-                        name="Select an type of Product!">
+                        name="Select a type of Product!">
                         Select a Product Type!
                     </option>
                     <option
                         name="Flower"
-                        value={newProduct.product_id[1]}
+                        value={1}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Flower
                     </option>
                     <option
                         name="Pre-Rolls"
-                        value={newProduct.product_id[2]}
+                        value={2}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Pre-Rolls
                     </option>
                     <option
                         name="Edibles"
-                        value={newProduct.product_id[3]}
+                        value={3}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Edibles
                     </option>
                     <option
                         name="Vaporizers"
-                        value={newProduct.product_id[4]}
+                        value={newProduct.product_id}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Vaporizers
                     </option>
                     <option
                         name="Concentrates"
-                        value={newProduct.product_id[5]}
+                        value={4}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Concentrates
                     </option>
                     <option
                         name="Topicals"
-                        value={newProduct.product_id[6]}
+                        value={5}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Topicals
                     </option>
                     <option
                         name="Tinctures"
-                        value={newProduct.product_id[7]}
+                        value={6}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Tinctures
                     </option>
@@ -136,68 +140,72 @@ function NewProductForm() {
                 <br />
                 {/* MAKE SURE TO REPLACE THIS WITH PICTURE ROUTES AT ONE POINT */}
                 <label for="topEffect">Top Effect:</label> <span />
-                <select name="topEffect" id="topEffect">
+                <select 
+                    name="topEffect" 
+                    id="topEffect"
+                    value={newProduct.top_effect_id}
+                    onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                     <option
                         name="Please Select a Top Effect">
                         Select a Top Effect!
                     </option>
                     <option
                         name="Calm"
-                        value={newProduct.top_effect_id[1]}
+                        value={1}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Calm
                     </option>
                     <option
                         name="Pain-Releaf"
-                        value={newProduct.top_effect_id[2]}
+                        value={2}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Pain-Relief
                     </option>
                     <option
                         name="Clear-Mind"
-                        value={newProduct.top_effect_id[3]}
+                        value={3}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Clear-Mind
                     </option>
                     <option
                         name="Creative"
-                        value={newProduct.top_effect_id[4]}
+                        value={4}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Creative
                     </option>
                     <option
                         name="Energetic"
-                        value={newProduct.top_effect_id[5]}
+                        value={5}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Energetic
                     </option>
                     <option
                         name="Focused"
-                        value={newProduct.top_effect_id[6]}
+                        value={6}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Focused
                     </option>
                     <option
                         name="Happy"
-                        value={newProduct.top_effect_id[7]}
+                        value={7}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Happy
                     </option>
                     <option
                         name="Inspired"
-                        value={newProduct.top_effect_id[8]}
+                        value={8}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Inspired
                     </option>
                     <option
                         name="Relaxed"
-                        value={newProduct.top_effect_id[9]}
+                        value={9}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Relaxed
                     </option>
                     <option
                         name="Sleepy"
-                        value={newProduct.top_effect_id[10]}
+                        value={10}
                         onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
                         Sleepy
                     </option>
