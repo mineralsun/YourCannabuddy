@@ -218,9 +218,8 @@ function NewProductForm() {
                     onChange={(event) => handleChangeFor('isFavorite', event.target.value)}
                 />
                 <input
-                    value="Add that shit!"
+                    value="Add New Product!"
                     type='submit'
-                    onClick={navToStash}
                 />
             </form>
         </div>
