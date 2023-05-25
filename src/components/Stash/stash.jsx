@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Grid, Box } from '@mui/material';
 import { Typography, Rating, Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import { Checkbox } from '@mui/material';
+import { FavoriteBorder, Favorite } from '@mui/icons-material';
 
 
 
@@ -22,6 +24,13 @@ function Stash() {
         dispatch({ type: 'FETCH_PRODUCTS' });
     }, []);
 
+    const favStatus = (product) => {
+        if (product.isFavorite === true) {
+            return (<Favorite />)
+        } else {
+            return(<FavoriteBorder />)
+        }
+    }
 
     return (
         <main>
@@ -57,6 +66,7 @@ function Stash() {
                                         <Rating name="read-only" value={product.rating} readOnly />
                                         <p>{product.top_effect_name}</p>
                                         <p>{product.isFavorite}</p>
+                                        <p>{favStatus(product)}</p>
                                         <body>{product.comments}</body>
                                     </div>
 
