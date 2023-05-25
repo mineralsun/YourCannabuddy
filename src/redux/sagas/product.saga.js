@@ -5,8 +5,10 @@ function* fetchProducts() {
     try {
         const products = yield axios.get('/api/products');
         yield put({ type: 'SET_PRODUCTS', payload: products.data });
-        const productType = yield axios.get('/api/products');
+        const productType = yield axios.get('/api/products/type');
         yield put({ type: 'SET_PRODUCT_TYPE', payload: productType.data});
+        const topEffect = yield axios.get('/api/products/effect');
+        yield put({ type: 'SET_TOP_EFFECT', payload: topEffect.data});
     } catch (error) {
         console.log(`Error in fetchProducts: ${error}`);
         alert('Something went wrong!');
