@@ -21,6 +21,47 @@ router.get('/', (req, res) => {
     }
 });
 
+router.get('/', (req, res) => {
+  if(req.isAuthenticated()) {
+    console.log('user', req.user);
+    let queryText = `SELECT * FROM "productType"`;
+    pool.query(queryText, [req.user.id]).then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(403);
+  }
+})
+
+router.get('/type', (req, res) => {
+  const query = `SELECT * FROM "productType" JOIN "productType_topEffect"
+                 ON "productType"."id" = "productType_topEffect"."product_id";`;
+  pool.query(query)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error in GET product types router ${error}`);
+      res.sendStatus(500);
+    })
+});
+
+router.get('/effect', (req, res) => {
+  const query = `SELECT * FROM "topEffect" JOIN "productType_topEffect"
+                 ON "topEffect"."id" = "productType_topEffect"."top_effect_id";`;
+  pool.query(query)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error in GET product types router ${error}`);
+      res.sendStatus(500);
+    })
+});
+
 // This route should allow a user to add a product to their stash!
 router.post('/', (req, res) => {
   console.log('/products POST route');

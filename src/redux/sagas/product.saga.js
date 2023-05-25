@@ -5,11 +5,19 @@ function* fetchProducts() {
     try {
         const products = yield axios.get('/api/products');
         yield put({ type: 'SET_PRODUCTS', payload: products.data });
+        const productType = yield axios.get('/api/products');
+        yield put({ type: 'SET_PRODUCT_TYPE', payload: productType.data});
     } catch (error) {
         console.log(`Error in fetchProducts: ${error}`);
         alert('Something went wrong!');
     }
 }
+
+// function* fetchProductType() {
+//     try {
+//         const products
+//     }
+// }
 
 function* postProduct(action) {
     try {

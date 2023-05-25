@@ -67,8 +67,9 @@ function NewProductForm() {
                 />
                 <br />
                 <label for="productType">Product Type</label> <br />
-                <select 
-                    name="productType" 
+                {/* TODO GET request for product type and map over */}
+                <select
+                    name="productType"
                     id="productType"
                     value={newProduct.product_id}
                     onChange={(event) => handleChangeFor('product_id', event.target.value)}>
@@ -140,8 +141,8 @@ function NewProductForm() {
                 <br />
                 {/* MAKE SURE TO REPLACE THIS WITH PICTURE ROUTES AT ONE POINT */}
                 <label for="topEffect">Top Effect:</label> <span />
-                <select 
-                    name="topEffect" 
+                <select
+                    name="topEffect"
                     id="topEffect"
                     value={newProduct.top_effect_id}
                     onChange={(event) => handleChangeFor('top_effect_id', event.target.value)}>
