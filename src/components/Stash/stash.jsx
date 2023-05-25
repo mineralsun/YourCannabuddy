@@ -26,13 +26,6 @@ function Stash() {
     return (
         <main>
             <h1 className="stash-title">Your Stash!</h1>
-            <p>{topEffect.map(effect => {
-                return (
-                    <div>
-                        {effect.top_effect_name}
-                    </div>
-                )
-            })}</p>
             <Button
                 variant="contained"
                 onClick={navToForm}>
@@ -60,23 +53,9 @@ function Stash() {
                                     <div key={product.id} >
                                         <h1>{product.product_name}</h1>
                                         <h3>{product.brand_name}</h3>
-                                        {/* This below should reflect name, refer to movies saga */}
-                                        {productType.map(type => {
-                                            return (
-                                                <h5>
-                                                    {type.typeName}
-                                                </h5>
-                                            )
-                                        })}
+                                        <h5>{product.typeName}</h5>
                                         <Rating name="read-only" value={product.rating} readOnly />
-                                        {topEffect.map(effect => {
-                                            return (
-                                                <p>
-                                                    {effect.top_effect_name}
-                                                </p>
-                                            )
-                                        })}
-                                        <p>{product.top_efffect_id}</p>
+                                        <p>{product.top_effect_name}</p>
                                         <p>{product.isFavorite}</p>
                                         <body>{product.comments}</body>
                                     </div>

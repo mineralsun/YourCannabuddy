@@ -9,7 +9,10 @@ router.get('/', (req, res) => {
     console.log('is authenticated?', req.isAuthenticated());
     if(req.isAuthenticated()) {
         console.log('user', req.user);
-        let queryText = `SELECT * FROM "products" WHERE "user_id" = $1;`;
+        let queryText = `SELECT * FROM "products" 
+                         JOIN "productType" ON "products"."product_id" = "productType"."id"
+                         JOIN "topEffect" ON "products"."top_effect_id" = "topEffect"."id"
+                         WHERE "user_id" = $1;`;
         pool.query(queryText, [req.user.id]).then((result) => {
             res.send(result.rows);
         }).catch((error) => {
@@ -21,20 +24,20 @@ router.get('/', (req, res) => {
     }
 });
 
-router.get('/', (req, res) => {
-  if(req.isAuthenticated()) {
-    console.log('user', req.user);
-    let queryText = `SELECT * FROM "productType"`;
-    pool.query(queryText, [req.user.id]).then((result) => {
-      res.send(result.rows);
-    }).catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
-  } else {
-    res.sendStatus(403);
-  }
-})
+// router.get('/', (req, res) => {
+//   if(req.isAuthenticated()) {
+//     console.log('user', req.user);
+//     let queryText = `SELECT * FROM "productType"`;
+//     pool.query(queryText, [req.user.id]).then((result) => {
+//       res.send(result.rows);
+//     }).catch((error) => {
+//       console.log(error);
+//       res.sendStatus(500);
+//     });
+//   } else {
+//     res.sendStatus(403);
+//   }
+// })
 
 router.get('/type', (req, res) => {
   const query = `SELECT * FROM "productType" JOIN "productType_topEffect"
