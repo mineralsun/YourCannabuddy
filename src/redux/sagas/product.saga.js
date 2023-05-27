@@ -40,10 +40,20 @@ function* postProduct(action) {
     }
 }
 
+function* fetchProductDetails(action) {
+    try {
+        const product = yield axios.get(`/api/products/${action.payload}`);
+        yield put({ type: 'SET_PRODUCT_DETAILS', payload: product.data});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 function* productSaga() {
     yield takeEvery('FETCH_PRODUCTS', fetchProducts);
     yield takeEvery('ADD_PRODUCT', postProduct);
     yield takeEvery('EDIT_PRODUCT', editProduct);
+    yield takeEvery('FETCH_PRODUCT_DETAILS', fetchProductDetails);
 }
 
 export default productSaga;
