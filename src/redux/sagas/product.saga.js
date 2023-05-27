@@ -15,17 +15,25 @@ function* fetchProducts() {
     }
 }
 
-// function* fetchProductType() {
-//     try {
-//         const products
-//     }
-// }
+function* editProduct(action) {
+    try {
+        yield axios.put(`/api/products/${action.payload.id}`, action.payload);
+        if (action.history) {
+            action.history.goBack();
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 function* postProduct(action) {
     try {
         yield axios.post('/api/products', action.payload);
-        yield put({ type: 'FETCH_PRODUCTS' });
-        action.setNewProduct({});
+        // yield put({ type: 'FETCH_PRODUCTS' });
+        // action.setNewProduct({});
+        if (action.history) {
+            action.history.push('/stash');
+        }
     } catch (error) {
         console.log(`Error in postProduct`);
         alert('Something went wrong');
@@ -35,6 +43,7 @@ function* postProduct(action) {
 function* productSaga() {
     yield takeEvery('FETCH_PRODUCTS', fetchProducts);
     yield takeEvery('ADD_PRODUCT', postProduct);
+    yield takeEvery('EDIT_PRODUCT', editProduct);
 }
 
 export default productSaga;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Grid, Box } from '@mui/material';
 import { Typography, Rating, Button } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { Checkbox } from '@mui/material';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 
@@ -15,6 +15,7 @@ function Stash() {
     const products = useSelector(store => store.productList)
     const productType = useSelector(store => store.productType);
     const topEffect = useSelector(store => store.topEffect);
+    const { id } = useParams();
 
     const navToForm = (event) => {
         history.push('/newproduct');
@@ -22,7 +23,7 @@ function Stash() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
-    }, []);
+    }, [id]);
 
     const favStatus = (product) => {
         if (product.isFavorite === true) {
@@ -30,6 +31,10 @@ function Stash() {
         } else {
             return(<FavoriteBorder />)
         }
+    }
+
+    const editProduct = (event) => {
+        history.push(`/editproduct/${id}`);
     }
 
     return (
@@ -59,7 +64,7 @@ function Stash() {
                                     padding={4}
                                     margin={1}
                                     borderColor={'black'}>
-                                    <div key={product.id} >
+                                    <div key={products.id} >
                                         <h1>{product.product_name}</h1>
                                         <h3>{product.brand_name}</h3>
                                         <h5>{product.typeName}</h5>
@@ -67,7 +72,13 @@ function Stash() {
                                         <p>{product.top_effect_name}</p>
                                         <p>{product.isFavorite}</p>
                                         <p>{favStatus(product)}</p>
-                                        <body>{product.comments}</body>
+                                        <p>{product.comments}</p>
+                                        <Link to={`editproduct/${products.id}`}>Edit</Link>
+                                        <Button
+                                            variant='contained'
+                                            onClick={editProduct}>
+                                                Edit
+                                        </Button>
                                     </div>
 
                                 </Box>

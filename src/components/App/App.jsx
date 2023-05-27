@@ -69,6 +69,10 @@ function App() {
             <NewProductForm />
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/editproduct/:id">
+            <NewProductForm />
+          </ProtectedRoute>
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact

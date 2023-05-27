@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { Typography, Rating } from '@mui/material';
-import { Checkbox } from '@mui/material';
+import { useHistory, useParams } from 'react-router-dom';
+import { Typography, Rating, Button, Checkbox } from '@mui/material';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 
 function NewProductForm() {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { id } = useParams();
 
     const navToStash = (event) => {
         history.push('/stash')
@@ -27,9 +27,20 @@ function NewProductForm() {
         isFavorite: 'FALSE'
     });
 
+
+
     const handleChangeFor = (key, value) => {
         console.log('event happened');
         setNewProduct({ ...newProduct, [key]: value });
+    }
+
+    const submitNewProduct = (e) => {
+        e.preventDefault();
+        if (id) {
+            dispatch({ type: 'EDIT_PRODUCT', payload: { newProduct}, history});
+        } else {
+            dispatch({ type: 'ADD_PRODUCT', payload: { newProduct }, history });
+        }
     }
 
     const addProduct = (event) => {
@@ -43,15 +54,21 @@ function NewProductForm() {
             rating: 0,
             comments: '',
             top_effect_id: 0,
-            isFavorite: 'FALSE'
-        });
+            isFavorite: ''
+        })
+            // .then((response) => {
+            //     history.push('/stash')
+            // })
+            // .catch((error) => {
+            //     console.log(`Error in addProduct ${error}`);
+            // });
     }
 
     return (
         <div>
             <h3>NEW PRODUCT:</h3>
             <pre>{JSON.stringify(newProduct)}</pre>
-            <form onSubmit={addProduct}>
+            <form onSubmit={submitNewProduct}>
                 <input
                     type='text'
                     value={newProduct.product_name}
@@ -97,25 +114,25 @@ function NewProductForm() {
                     </option>
                     <option
                         name="Vaporizers"
-                        value={newProduct.product_id}
+                        value={4}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Vaporizers
                     </option>
                     <option
                         name="Concentrates"
-                        value={4}
+                        value={5}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Concentrates
                     </option>
                     <option
                         name="Topicals"
-                        value={5}
+                        value={6}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Topicals
                     </option>
                     <option
                         name="Tinctures"
-                        value={6}
+                        value={7}
                         onChange={(event) => handleChangeFor('product_id', event.target.value)}>
                         Tinctures
                     </option>
@@ -126,7 +143,7 @@ function NewProductForm() {
                 </Typography>
                 <Rating
                     name="product rating"
-                    value={newProduct.rating}
+                    value={Number(newProduct.rating)}
                     onChange={(event) => handleChangeFor('rating', event.target.value)}
                 />
                 <br />
@@ -216,32 +233,21 @@ function NewProductForm() {
                     label={newProduct.isFavorite}
                     icon={<FavoriteBorder defaultChecked />}
                     checkedIcon={<Favorite />}
-                    onChange={(event) => handleChangeFor('isFavorite', event.target.value)}
+                    onChange={(event) => handleChangeFor('isFavorite', event.target.value = false)}
                 />
-                <input
+                {/* <input
                     value="Add New Product!"
                     type='submit'
-                />
+                /> */}
+                <Button
+                    variant='contained'
+                    onClick={addProduct}>
+                    Add to your stash!
+                </Button>
             </form>
         </div>
     )
 }
 
-// const addProduct = (event) => {
-//     event.preventDefault();
-//     dispatch({
-//         type: 'ADD_PRODUCT',
-//         payload: {
-//             product_name: newProduct.product_name,
-//             brand_name: newProduct.brand_name,
-//             product_id: newProduct.product_id,
-//             rating: newProduct.rating,
-//             comments: newProduct.comments,
-//             top_effect_id: newProduct.top_effect_id,
-//             isFavorite: newProduct.isFavorite
-//         },
-//         setNewProduct: setNewProduct
-//     });
-// }
 
 export default NewProductForm;
