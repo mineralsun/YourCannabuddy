@@ -30,7 +30,7 @@ function Stash() {
         if (product.isFavorite === true) {
             return (<Favorite />)
         } else {
-            return(<FavoriteBorder />)
+            return (<FavoriteBorder />)
         }
     }
 

@@ -3,16 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Typography, Rating, Button, Checkbox } from '@mui/material';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
+import Switch from '@mui/material/Switch';
 import axios from 'axios';
 
 function NewProductForm() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
-
-    const navToStash = (event) => {
-        history.push('/stash')
-    }
 
 
     const [newProduct, setNewProduct] = useState({
@@ -22,7 +19,7 @@ function NewProductForm() {
         rating: 0,
         comments: '',
         top_effect_id: 0,
-        isFavorite: 'FALSE'
+        isFavorite: (false)
     });
 
     useEffect(() => {
@@ -39,6 +36,17 @@ function NewProductForm() {
         }
     }, [id]);
 
+    const [favorite, setFavorite] = useState(false);
+
+    const favHandler = (event, product) => {
+        setFavorite(event.target.value);
+        if (product.isFavorite === true) {
+            return newProduct.isFavorite = (true)
+        } else {
+            return newProduct.isFavorite = (false)
+        }
+    }
+
     const handleChangeFor = (key, value) => {
         console.log('event happened');
         setNewProduct({ ...newProduct, [key]: value });
@@ -47,32 +55,27 @@ function NewProductForm() {
     const submitNewProduct = (e) => {
         e.preventDefault();
         if (id) {
-            dispatch({ type: 'EDIT_PRODUCT', payload: { newProduct, id}, history});
+            dispatch({ type: 'EDIT_PRODUCT', payload: { newProduct, id }, history });
         } else {
             dispatch({ type: 'ADD_PRODUCT', payload: { newProduct }, history });
         }
     }
 
-    const addProduct = (event) => {
-        event.preventDefault();
-        dispatch({ type: 'ADD_PRODUCT', payload: newProduct });
-        setNewProduct({
-            id: newProduct.id + 1,
-            product_name: '',
-            brand_name: '',
-            product_id: 0,
-            rating: 0,
-            comments: '',
-            top_effect_id: 0,
-            isFavorite: ''
-        })
-            // .then((response) => {
-            //     history.push('/stash')
-            // })
-            // .catch((error) => {
-            //     console.log(`Error in addProduct ${error}`);
-            // });
-    }
+
+    // const addProduct = (event) => {
+    //     event.preventDefault();
+    //     dispatch({ type: 'ADD_PRODUCT', payload: newProduct });
+    //     setNewProduct({
+    //         id: newProduct.id + 1,
+    //         product_name: '',
+    //         brand_name: '',
+    //         product_id: 0,
+    //         rating: 0,
+    //         comments: '',
+    //         top_effect_id: 0,
+    //         isFavorite: ''
+    //     })
+    // }
 
     return (
         <div>
@@ -240,16 +243,18 @@ function NewProductForm() {
                     </option>
                 </select>
                 <br />
-                <Checkbox
-                    label={newProduct.isFavorite}
-                    icon={<FavoriteBorder defaultChecked />}
-                    checkedIcon={<Favorite />}
-                    onChange={(event) => handleChangeFor('isFavorite', event.target.value = false)}
-                />
-                {/* <input
-                    value="Add New Product!"
-                    type='submit'
+                {/* <Checkbox
+                    // label={newProduct.isFavorite}
+                    icon={<FavoriteBorder defaultChecked={false} />}
+                    checkedIcon={<Favorite  checked={true} />}
+                    onChange={(event) => handleChangeFor('isFavorite', event.target.favorite)}
+                    inputProps={{'isFavorite': 'controlled'}}
                 /> */}
+                <Switch {...newProduct}
+                    icon={<FavoriteBorder value={false} defaultChecked={false} />}
+                    checkedIcon={<Favorite value={true} checked={true}/>}
+                    // value={false || true}
+                    onChange={(event) => handleChangeFor('isFavorite', event.target.value)} />
                 <Button
                     variant='contained'
                     onClick={submitNewProduct}>
@@ -260,5 +265,8 @@ function NewProductForm() {
     )
 }
 
+// const navToStash = (event) => {
+//     history.push('/stash')
+// }
 
 export default NewProductForm;
