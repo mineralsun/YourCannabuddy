@@ -54,34 +54,21 @@ router.put('/:id', (req, res) => {
   }
 })
 
+router.delete('/:id', (req, res) => {
+  console.log('/products DELETE route');
+  console.log('is authenticated?', req.isUnauthenticated());
+  console.log('user:', req.user)
+  if(req.isAuthenticated()) {
+    let queryText = `DELETE FROM products WHERE "id" = $1;`;
+    pool.query(queryText, [req.params.id])
+    .then(() => {res.sendStatus(200); })
+    .catch((error) => {
+      console.log(`ERROR in DELETE router, ${error}`);
+      res.sendStatus(500);
+    });
+  }
+})
 
-// router.get('/type', (req, res) => {
-//   const query = `SELECT * FROM "productType" JOIN "productType_topEffect"
-//                  ON "productType"."id" = "productType_topEffect"."product_id";`;
-//   pool.query(query)
-//     .then(result => {
-//       res.send(result.rows);
-//     })
-//     .catch((error) => {
-//       console.log(`Error in GET product types router ${error}`);
-//       res.sendStatus(500);
-//     })
-// });
-
-// router.get('/effect', (req, res) => {
-//   const query = `SELECT * FROM "topEffect" JOIN "productType_topEffect"
-//                  ON "topEffect"."id" = "productType_topEffect"."top_effect_id";`;
-//   pool.query(query)
-//     .then(result => {
-//       res.send(result.rows);
-//     })
-//     .catch((error) => {
-//       console.log(`Error in GET product types router ${error}`);
-//       res.sendStatus(500);
-//     })
-// });
-
-// This route should allow a user to add a product to their stash!
 router.post('/', (req, res) => {
   console.log('/products POST route');
   console.log(req.body);

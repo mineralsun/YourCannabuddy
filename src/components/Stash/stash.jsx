@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Grid, Box } from '@mui/material';
-import { Typography, Rating, Button } from '@mui/material';
+import { Typography, Rating, Button, IconButton } from '@mui/material';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { Checkbox } from '@mui/material';
-import { FavoriteBorder, Favorite } from '@mui/icons-material';
+import { FavoriteBorder, Favorite, } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -13,8 +14,6 @@ function Stash() {
     const dispatch = useDispatch();
     const history = useHistory();
     const products = useSelector(store => store.productList)
-    const productType = useSelector(store => store.productType);
-    const topEffect = useSelector(store => store.topEffect);
     const { id } = useParams();
 
     const navToForm = (event) => {
@@ -37,6 +36,11 @@ function Stash() {
     const editProduct = (product) => {
         console.log(id);
         history.push(`/editproduct/${product.id}`);
+    }
+
+    const deleteProduct = (id) => {
+        console.log(id);
+        dispatch({ type: 'DELETE_PRODUCT', payload: id})
     }
 
     return (
@@ -80,6 +84,10 @@ function Stash() {
                                             onClick={(event) => editProduct(product)}>
                                                 Edit
                                         </Button>
+                                        <IconButton>
+                                            <DeleteIcon 
+                                            onClick={(event) => deleteProduct(product.id)}/>
+                                        </IconButton>
                                     </div>
 
                                 </Box>

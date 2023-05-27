@@ -11,14 +11,12 @@ function* fetchProducts() {
     }
 }
 
-function* editProduct(action) {
+function* fetchProductDetails(action) {
     try {
-        yield axios.put(`/api/products/${action.payload.id}`, action.payload);
-        if (action.history) {
-            action.history.goBack();
-        }
+        const product = yield axios.get(`/api/products/${action.payload}`);
+        yield put({ type: 'SET_PRODUCT_DETAILS', payload: product.data});
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 }
 
@@ -36,21 +34,23 @@ function* addProduct(action) {
     }
 }
 
-function* fetchProductDetails(action) {
+function* editProduct(action) {
     try {
-        const product = yield axios.get(`/api/products/${action.payload}`);
-        yield put({ type: 'SET_PRODUCT_DETAILS', payload: product.data});
+        yield axios.put(`/api/products/${action.payload.id}`, action.payload);
+        if (action.history) {
+            action.history.goBack();
+        }
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 }
 
 function* deleteProduct(action) {
     try {
         yield axios.delete(`/api/products/${action.payload}`);
-        yield put(({ type: 'FETCH_PRODUCTS'}))
+        yield put({ type: 'FETCH_PRODUCTS'})
     } catch (error) {
-        console.log(`Error in deleteProduct saga ${error}`);
+        console.log(`Error in deleteProduct saga ${error}`, error);
     }
 }
 
