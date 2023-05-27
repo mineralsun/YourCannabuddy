@@ -35,6 +35,7 @@ function Stash() {
     }
 
     const editProduct = (product) => {
+        console.log(id);
         history.push(`/editproduct/${product.id}`);
     }
 
@@ -74,7 +75,6 @@ function Stash() {
                                         <p>{product.isFavorite}</p>
                                         <p>{favStatus(product)}</p>
                                         <p>{product.comments}</p>
-                                        <Link to={`editproduct/${products.id}`}>Edit</Link>
                                         <Button
                                             variant='contained'
                                             onClick={(event) => editProduct(product)}>

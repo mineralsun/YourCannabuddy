@@ -14,19 +14,6 @@ function NewProductForm() {
         history.push('/stash')
     }
 
-    useEffect(() => {
-        // dispatch({ type: 'FETCH_PRODUCTS' });
-        // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: id})
-        if (id) {
-            axios.get(`/api/products/${id}`).then((response) => {
-                const newProduct = response.data;
-                setNewProduct({ newProduct })
-            }).catch((error) => {
-                console.log(error)
-                alert('something went wrong!')
-            });
-        }
-    }, [id]);
 
     const [newProduct, setNewProduct] = useState({
         product_name: '',
@@ -38,7 +25,19 @@ function NewProductForm() {
         isFavorite: 'FALSE'
     });
 
-
+    useEffect(() => {
+        // dispatch({ type: 'FETCH_PRODUCTS' });
+        // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: id})
+        if (id) {
+            axios.get(`/api/products/${id}`).then((response) => {
+                const newProduct = response.data;
+                setNewProduct(newProduct)
+            }).catch((error) => {
+                console.log(error)
+                alert('something went wrong!')
+            });
+        }
+    }, [id]);
 
     const handleChangeFor = (key, value) => {
         console.log('event happened');
@@ -48,7 +47,7 @@ function NewProductForm() {
     const submitNewProduct = (e) => {
         e.preventDefault();
         if (id) {
-            dispatch({ type: 'EDIT_PRODUCT', payload: { newProduct}, history});
+            dispatch({ type: 'EDIT_PRODUCT', payload: { newProduct, id}, history});
         } else {
             dispatch({ type: 'ADD_PRODUCT', payload: { newProduct }, history });
         }
@@ -77,7 +76,8 @@ function NewProductForm() {
 
     return (
         <div>
-            <h3>NEW PRODUCT:</h3>
+            <h3>{id ? `EDITING ${newProduct.product_name} by ${newProduct.brand_name} ` : `NEW PRODUCT:`}</h3>
+            <h5>{id}</h5>
             <pre>{JSON.stringify(newProduct)}</pre>
             <form onSubmit={submitNewProduct}>
                 <input
@@ -94,7 +94,7 @@ function NewProductForm() {
                     onChange={(event) => handleChangeFor('brand_name', event.target.value)}
                 />
                 <br />
-                <label for="productType">Product Type</label> <br />
+                <label htmlFor="productType">Product Type</label> <br />
                 {/* TODO GET request for product type and map over */}
                 <select
                     name="productType"
@@ -168,7 +168,7 @@ function NewProductForm() {
                 />
                 <br />
                 {/* MAKE SURE TO REPLACE THIS WITH PICTURE ROUTES AT ONE POINT */}
-                <label for="topEffect">Top Effect:</label> <span />
+                <label htmlFor="topEffect">Top Effect:</label> <span />
                 <select
                     name="topEffect"
                     id="topEffect"
@@ -252,7 +252,7 @@ function NewProductForm() {
                 /> */}
                 <Button
                     variant='contained'
-                    onClick={addProduct}>
+                    onClick={submitNewProduct}>
                     Add to your stash!
                 </Button>
             </form>
