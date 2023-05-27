@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Typography, Rating, Button, Checkbox } from '@mui/material';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
+import axios from 'axios';
 
 function NewProductForm() {
     const dispatch = useDispatch();
@@ -14,8 +15,18 @@ function NewProductForm() {
     }
 
     useEffect(() => {
-        dispatch({ type: 'FETCH_PRODUCTS' });
-    }, []);
+        // dispatch({ type: 'FETCH_PRODUCTS' });
+        // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: id})
+        if (id) {
+            axios.get(`/api/products/${id}`).then((response) => {
+                const newProduct = response.data;
+                setNewProduct({ newProduct })
+            }).catch((error) => {
+                console.log(error)
+                alert('something went wrong!')
+            });
+        }
+    }, [id]);
 
     const [newProduct, setNewProduct] = useState({
         product_name: '',

@@ -23,6 +23,7 @@ function Stash() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
+        dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: id });
     }, [id]);
 
     const favStatus = (product) => {
@@ -33,8 +34,8 @@ function Stash() {
         }
     }
 
-    const editProduct = (event) => {
-        history.push(`/editproduct/${id}`);
+    const editProduct = (product) => {
+        history.push(`/editproduct/${product.id}`);
     }
 
     return (
@@ -76,7 +77,7 @@ function Stash() {
                                         <Link to={`editproduct/${products.id}`}>Edit</Link>
                                         <Button
                                             variant='contained'
-                                            onClick={editProduct}>
+                                            onClick={(event) => editProduct(product)}>
                                                 Edit
                                         </Button>
                                     </div>

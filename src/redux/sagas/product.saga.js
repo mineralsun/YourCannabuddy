@@ -26,7 +26,7 @@ function* editProduct(action) {
     }
 }
 
-function* postProduct(action) {
+function* addProduct(action) {
     try {
         yield axios.post('/api/products', action.payload);
         // yield put({ type: 'FETCH_PRODUCTS' });
@@ -51,7 +51,7 @@ function* fetchProductDetails(action) {
 
 function* productSaga() {
     yield takeEvery('FETCH_PRODUCTS', fetchProducts);
-    yield takeEvery('ADD_PRODUCT', postProduct);
+    yield takeEvery('ADD_PRODUCT', addProduct);
     yield takeEvery('EDIT_PRODUCT', editProduct);
     yield takeEvery('FETCH_PRODUCT_DETAILS', fetchProductDetails);
 }
