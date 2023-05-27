@@ -45,11 +45,21 @@ function* fetchProductDetails(action) {
     }
 }
 
+function* deleteProduct(action) {
+    try {
+        yield axios.delete(`/api/products/${action.payload}`);
+        yield put(({ type: 'FETCH_PRODUCTS'}))
+    } catch (error) {
+        console.log(`Error in deleteProduct saga ${error}`);
+    }
+}
+
 function* productSaga() {
     yield takeEvery('FETCH_PRODUCTS', fetchProducts);
     yield takeEvery('ADD_PRODUCT', addProduct);
     yield takeEvery('EDIT_PRODUCT', editProduct);
     yield takeEvery('FETCH_PRODUCT_DETAILS', fetchProductDetails);
+    yield takeEvery('DELETE_PRODUCT', deleteProduct);
 }
 
 export default productSaga;
