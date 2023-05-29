@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Grid, Box } from '@mui/material';
 import { Typography, Rating, Button, IconButton } from '@mui/material';
 import { useHistory, useParams, Link } from 'react-router-dom';
-import { Checkbox } from '@mui/material';
+// import { Checkbox } from '@mui/material';
 import { FavoriteBorder, Favorite, } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -14,7 +14,7 @@ function Stash() {
     const dispatch = useDispatch();
     const history = useHistory();
     const products = useSelector(store => store.productList)
-    const { id } = useParams();
+    const { productId } = useParams();
 
     const navToForm = (event) => {
         history.push('/newproduct');
@@ -22,8 +22,8 @@ function Stash() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
-        dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: id });
-    }, [id]);
+        dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
+    }, [productId]);
 
     const favStatus = (product) => {
         if (product.isFavorite === true) {
@@ -34,7 +34,7 @@ function Stash() {
     }
 
     const editProduct = (product) => {
-        console.log(id);
+        console.log(productId);
         history.push(`/editproduct/${product.id}`);
     }
 

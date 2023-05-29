@@ -27,6 +27,7 @@ function NewProductForm() {
         // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: id})
         if (id) {
             axios.get(`/api/products/${id}`).then((response) => {
+                console.log(response.data);
                 const newProduct = response.data;
                 setNewProduct(newProduct)
             }).catch((error) => {
@@ -55,7 +56,7 @@ function NewProductForm() {
     const submitNewProduct = (e) => {
         e.preventDefault();
         if (id) {
-            dispatch({ type: 'EDIT_PRODUCT', payload: { newProduct, id }, history });
+            dispatch({ type: 'EDIT_PRODUCT', payload: { newProduct, id, }, history });
         } else {
             dispatch({ type: 'ADD_PRODUCT', payload: { newProduct }, history });
         }
