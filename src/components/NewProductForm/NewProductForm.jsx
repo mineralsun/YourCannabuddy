@@ -29,7 +29,7 @@ function NewProductForm() {
             axios.get(`/api/products/${id}`).then((response) => {
                 console.log(response.data);
                 const newProduct = response.data;
-                setNewProduct(newProduct)
+                setNewProduct(newProduct, newProduct.product_name, newProduct.brand_name, newProduct.product_id, newProduct.rating, newProduct.comments, newProduct.top_effect_id, newProduct.isFavorite)
             }).catch((error) => {
                 console.log(error)
                 alert('something went wrong!')
@@ -57,6 +57,7 @@ function NewProductForm() {
         e.preventDefault();
         if (id) {
             dispatch({ type: 'EDIT_PRODUCT', payload: { newProduct, id, }, history });
+            console.log(newProduct)
         } else {
             dispatch({ type: 'ADD_PRODUCT', payload: { newProduct }, history });
         }
@@ -81,7 +82,6 @@ function NewProductForm() {
     return (
         <div>
             <h3>{id ? `EDITING ${newProduct.product_name} by ${newProduct.brand_name} ` : `NEW PRODUCT:`}</h3>
-            <h5>{id}</h5>
             <pre>{JSON.stringify(newProduct)}</pre>
             <form onSubmit={submitNewProduct}>
                 <input

@@ -46,7 +46,7 @@ router.put('/:id', (req, res) => {
     SET "product_name" = $1, "brand_name" = $2, "product_id" = $3, "rating" = $4, "comments" = $5, "top_effect_id" = $6, "isFavorite" = $7
     WHERE "id" = $8 AND "user_id" = $9;`;
     pool.query(queryText,
-      [req.body.product_name, req.body.brand_name, req.body.product_id, req.body.rating, req.body.comments, req.body.top_effect_id, req.body.isFavorite, req.params.id, req.user.id,])
+      [req.body.newProduct.product_name, req.body.newProduct.brand_name, req.body.newProduct.product_id, req.body.newProduct.rating, req.body.newProduct.comments, req.body.newProduct.top_effect_id, req.body.newProduct.isFavorite, req.params.id, req.user.id,])
       .then((result) => {
         res.sendStatus(200);
       })
@@ -83,7 +83,7 @@ router.post('/', (req, res) => {
     let queryText = `
     INSERT INTO "products" ("user_id", "product_name", "brand_name", "product_id", "rating", "comments", "top_effect_id", "isFavorite")
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
-    pool.query(queryText, [req.user.id, req.body.product_name, req.body.brand_name, req.body.product_id, req.body.rating, req.body.comments, req.body.top_effect_id, req.body.isFavorite])
+    pool.query(queryText, [req.user.id, req.body.newProduct.product_name, req.body.newProduct.brand_name, req.body.newProduct.product_id, req.body.newProduct.rating, req.body.newProduct.comments, req.body.newProduct.top_effect_id, req.body.newProduct.isFavorite])
       .then((result) => {
         res.sendStatus(201);
       }).catch((error) => {
