@@ -73,9 +73,9 @@ function Stash() {
                                     <div key={products.id} >
                                         <h1>{product.product_name}</h1>
                                         <h3>{product.brand_name}</h3>
-                                        <h5>{product.typeName}</h5>
+                                        <h5>{product.product_id}</h5>
                                         <Rating name="read-only" value={product.rating} readOnly />
-                                        <p>{product.top_effect_name}</p>
+                                        <p>{product.top_effect_id}</p>
                                         <p>{product.isFavorite}</p>
                                         <p>{favStatus(product)}</p>
                                         <p>{product.comments}</p>

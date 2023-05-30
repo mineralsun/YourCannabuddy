@@ -15,7 +15,6 @@ function* fetchProductDetails(action) {
     try {
         const product = yield axios.get(`/api/products/${action.payload}`);
         yield put({ type: 'SET_PRODUCT_DETAILS', payload: product.data});
-        console.log(product.data)
     } catch (error) {
         console.log(error);
     }
