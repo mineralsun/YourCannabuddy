@@ -24,11 +24,8 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
             <Link className="navLink" to="/stash">
-              Stash
+              My Stash
             </Link>
 
             <Link className="navLink" to="/info">
@@ -38,8 +35,11 @@ function Nav() {
             <Link className="navLink" to="/about">
               About
             </Link>
-
+            <Link className="navLink" to="/user">
+              My Profile
+            </Link>
             <LogOutButton className="navLink" />
+
           </>
         )}
 

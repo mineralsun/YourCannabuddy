@@ -59,8 +59,8 @@ function NewProductForm() {
 
     return (
         <div>
-            <h3>{id ? `EDITING ${newProduct.product_name} by ${newProduct.brand_name} ` : `NEW PRODUCT:`}</h3>
-            <pre>{JSON.stringify(newProduct)}</pre>
+            <h1>{id ? `EDITING ${newProduct.product_name} by ${newProduct.brand_name} ` : `NEW PRODUCT:`}</h1>
+            {/* <pre>{JSON.stringify(newProduct)}</pre> */}
             <form onSubmit={submitNewProduct}>
                 <input
                     type='text'

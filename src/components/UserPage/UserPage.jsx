@@ -9,6 +9,8 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      <p>*email placeholder for deployment*</p>
+      <p>I would also like to add some minor profile information and the ability to reset passwords through this page</p>
       <LogOutButton className="btn" />
     </div>
   );

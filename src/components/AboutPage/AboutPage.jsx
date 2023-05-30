@@ -9,7 +9,11 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <body>
+          <h4>“YourCannabudy!” is a cannabis product tracking app that will allow users to log in to a secure profile, add a new product to their “stash”, and also reference and sort through their stash via filters and control through YourCannabuddy.</h4>
+          <li>The future of this application would likely include social features, several different organizational or filtering options, product-picture upload, secondary effects, and educational resources as well.</li>
+          <li>The main function is to break down the barriers of manually tracking cannabis products and personal data in a physical notebook, and store that information in an accessible and easy-to-use website.</li>
+        </body>
       </div>
     </div>
   );
