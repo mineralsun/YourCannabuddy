@@ -39,6 +39,14 @@ function NewProductForm() {
         setNewProduct({ ...newProduct, [key]: value });
     }
 
+    const submitButton = () => {
+        if (id) {
+           return 'Save'
+        } else {
+           return 'Add to your stash!'
+        }
+    }
+
     const submitNewProduct = (e) => {
         e.preventDefault();
         if (id) {
@@ -224,7 +232,7 @@ function NewProductForm() {
                 <Button
                     variant='contained'
                     onClick={submitNewProduct}>
-                    Add to your stash!
+                    {submitButton()}
                 </Button>
             </form>
         </div>
