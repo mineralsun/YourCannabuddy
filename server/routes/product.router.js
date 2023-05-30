@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  console.log(req.body, 'everett')
+  console.log(req.body)
   const queryText = `SELECT * FROM products WHERE "id" = $1`;
   pool.query(queryText, [req.params.id])
     .then((result) => {
@@ -38,6 +38,23 @@ router.get('/:id', (req, res) => {
       console.log('ERROR: get specific products', error)
       res.sendStatus(500);
     })
+})
+
+// This is my route to filter specific products
+router.get('/filter/:id', (req, res) => {
+  const queryText = `SELECT "products"."product_id", 
+                    "productType"."typeName" AS "product_id"
+                     FROM "products"
+                     JOIN "productType" ON "products"."product_id" = "productType"."id"
+                     WHERE "product_id" = $1 AND "user_id" = $2;`
+  pool.query(queryText, [req.body.product_id, req.user.id])
+  .then((result) => {
+    res.send(result.rows[0]);
+  })
+  .catch((error) => {
+    console.log(`Error in filter route, ${error}`)
+    res.sendStatus(500);
+  })
 })
 
 router.put('/:id', (req, res) => {
