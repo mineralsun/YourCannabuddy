@@ -9,6 +9,7 @@ function InfoPage() {
   return (
     <div className="container">
       <p>Not sure I need this page or what I should put here?</p>
+      <a href="https://www.flaticon.com/free-icons/hemp" title="Hemp icons">Hemp icons created by Freepik - Flaticon</a>
     </div>
   );
 }

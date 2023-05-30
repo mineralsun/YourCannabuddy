@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { Grid, Box } from '@mui/material';
 import { Typography, Rating, Button, IconButton } from '@mui/material';
-import { useHistory, useParams, Link } from 'react-router-dom';
+import { useHistory, useParams, } from 'react-router-dom';
 // import { Checkbox } from '@mui/material';
 import { FavoriteBorder, 
          Favorite, 
          SpaRounded, 
          LocalPharmacyRounded, 
-         LightbulbCircleRounded,
          BoltRounded,
          QueryStatsRounded,
          SentimentVerySatisfiedRounded,
