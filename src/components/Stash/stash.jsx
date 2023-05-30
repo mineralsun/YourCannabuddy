@@ -112,11 +112,9 @@ function Stash() {
                                         <h3>{product.brand_name}</h3>
                                         <h5>{product.product_id}</h5>
                                         <Rating name="read-only" value={product.rating} readOnly />
-                                        {/* <p>{product.top_effect_id}</p> */}
-                                        <p>{effectStatus(product)}</p>
-                                        <p>{product.isFavorite}</p>
-                                        <p>{favStatus(product)}</p>
+                                        <h4>{effectStatus(product)} <br /> {product.top_effect_id}</h4>
                                         <p>{product.comments}</p>
+                                        <p>{favStatus(product)}</p>
                                         <Button
                                             variant='contained'
                                             onClick={(event) => editProduct(product)}>
