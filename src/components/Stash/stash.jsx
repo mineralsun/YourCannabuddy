@@ -22,7 +22,7 @@ function Stash() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
-        dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
+        // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
     }, [productId]);
 
     const favStatus = (product) => {
@@ -40,7 +40,12 @@ function Stash() {
 
     const deleteProduct = (id) => {
         console.log(id);
-        dispatch({ type: 'DELETE_PRODUCT', payload: id})
+        dispatch({ type: 'DELETE_PRODUCT', payload: id })
+    }
+
+    const filterProduct = (products) => {
+        console.log(products);
+        dispatch({ type: 'FETCH_FILTERED_PRODUCT', payload: products })
     }
 
     return (
@@ -50,6 +55,12 @@ function Stash() {
                 variant="contained"
                 onClick={navToForm}>
                 Add New Product:
+            </Button>
+            <br />
+            <Button
+                variant="contained"
+                onClick={(event) => filterProduct(products.product_id)}>
+                Flower
             </Button>
             {
                 products.length === 0 ? (
@@ -82,11 +93,11 @@ function Stash() {
                                         <Button
                                             variant='contained'
                                             onClick={(event) => editProduct(product)}>
-                                                Edit
+                                            Edit
                                         </Button>
                                         <IconButton>
-                                            <DeleteIcon 
-                                            onClick={(event) => deleteProduct(product.id)}/>
+                                            <DeleteIcon
+                                                onClick={(event) => deleteProduct(product.id)} />
                                         </IconButton>
                                     </div>
 
