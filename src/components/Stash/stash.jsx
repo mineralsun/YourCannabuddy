@@ -5,7 +5,20 @@ import { Grid, Box } from '@mui/material';
 import { Typography, Rating, Button, IconButton } from '@mui/material';
 import { useHistory, useParams, Link } from 'react-router-dom';
 // import { Checkbox } from '@mui/material';
-import { FavoriteBorder, Favorite, } from '@mui/icons-material';
+import { FavoriteBorder, 
+         Favorite, 
+         SpaRounded, 
+         LocalPharmacyRounded, 
+         LightbulbCircleRounded,
+         BoltRounded,
+         QueryStatsRounded,
+         SentimentVerySatisfiedRounded,
+         EmojiPeopleRounded,
+         WeekendRounded,
+         HotelRounded,
+         SelfImprovementRounded,
+         LightbulbRounded
+         } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
@@ -22,7 +35,7 @@ function Stash() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
-        dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
+        // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
     }, [productId]);
 
     const favStatus = (product) => {
@@ -30,6 +43,30 @@ function Stash() {
             return (<Favorite />)
         } else {
             return (<FavoriteBorder />)
+        }
+    }
+
+    const effectStatus = (product) => {
+        if (product.top_effect_id === 'Calm' ) {
+            return (<SpaRounded />)
+        } else if (product.top_effect_id === 'Pain-Relief' ) {
+            return (<LocalPharmacyRounded />)
+        } else if (product.top_effect_id === 'Clear-Mind') {
+            return (<SelfImprovementRounded />)
+        } else if (product.top_effect_id === 'Creative') {
+            return (<LightbulbRounded />)
+        } else if (product.top_effect_id === 'Energetic') {
+            return (<BoltRounded />)
+        } else if (product.top_effect_id === 'Focused') {
+            return (<QueryStatsRounded />)
+        } else if (product.top_effect_id === 'Happy') {
+            return (<SentimentVerySatisfiedRounded />)
+        } else if (product.top_effect_id === 'Inspired') {
+            return (<EmojiPeopleRounded />)
+        } else if (product.top_effect_id === 'Relaxed') {
+            return (<WeekendRounded />)
+        } else if (product.top_effect_id === 'Sleepy') {
+            return (<HotelRounded />)
         }
     }
 
@@ -75,7 +112,8 @@ function Stash() {
                                         <h3>{product.brand_name}</h3>
                                         <h5>{product.product_id}</h5>
                                         <Rating name="read-only" value={product.rating} readOnly />
-                                        <p>{product.top_effect_id}</p>
+                                        {/* <p>{product.top_effect_id}</p> */}
+                                        <p>{effectStatus(product)}</p>
                                         <p>{product.isFavorite}</p>
                                         <p>{favStatus(product)}</p>
                                         <p>{product.comments}</p>
