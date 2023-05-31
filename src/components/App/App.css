@@ -7,7 +7,7 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
-  background-color: peachpuff;
+  background-color: papayawhip;
   text-align: center;
 }
 
@@ -36,7 +36,7 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: green;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -59,7 +59,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #1a9601;
   text-decoration: none;
 }
 
@@ -77,7 +77,7 @@ Button
 .btn_asLink:hover {
   background-color: transparent;
   border-color: #008183;
-  color: #008183;
+  color: #1a9601;
 }
 
 /* --------------------------------------------------------------------------------
@@ -113,4 +113,44 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+/* SIDE FILTER BAR */
+.productTypeNav {
+  height: auto;
+  width: 180px;
+  position: absolute;
+  top: 66px;
+  left: 0;
+  bottom: 0%;
+  padding-bottom: 0%;
+  margin-bottom: 0%;
+  background-color: green;
+  overflow: hidden;
+  padding-top: 0;
+  color: papayawhip;
+  text-transform: bold;
+}
+
+.productTypeNav ul {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: papayawhip;
+  display: block;
+  padding-bottom: full;
+  margin-bottom: full;
+  /* How do i get the thing to expand */
+  border-bottom: fill solid green;
+}
+
+.productTypeNav ul:hover {
+  color-scheme: #1a9601;
+}
+
+.productTypeHead {
+  text-align: center;
+  background-color: green;
+  color: papayawhip;
+  padding: 20px;
 }

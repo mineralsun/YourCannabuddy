@@ -26,6 +26,7 @@ function Stash() {
     const dispatch = useDispatch();
     const history = useHistory();
     const products = useSelector(store => store.productList)
+    const productTypes = useSelector(store => store.productTypes)
     const { productId } = useParams();
 
     const navToForm = (event) => {
@@ -34,6 +35,7 @@ function Stash() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
+        dispatch({ type: 'FETCH_PRODUCT_TYPES'});
         // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
     }, [productId]);
 
@@ -89,15 +91,32 @@ function Stash() {
             </Button>
             {
                 products.length === 0 ? (
-                    <div>
-                        Time to try some weed and add your products!
-                    </div>
+                    <>
+                        <br />
+                        <div>
+                            Time to try some weed and add your products!
+                        </div>
+                    </>
                 ) : (
                     <div>
                         <nav className="productTypeNav" style={{ textalign: 'center' }}>
-                            <h4 className="productTypeHead" style={{ padding: '25px', top: '10px'}}>
+                            <h4 className="productTypeHead" style={{ padding: '25px', top: '10px' }}>
                                 Filter By Product Type:
                             </h4>
+                            <ul>
+                                <p>Favorites</p>
+                            </ul>
+                            {
+                                productTypes.map((type) => {
+                                    return (
+                                        <ul className="productTypes">
+                                            <p key={type.id} >
+                                                {type.typeName}
+                                            </p>
+                                        </ul>
+                                    )
+                                })
+                            }
                         </nav>
                         <Grid
                             margin={0}

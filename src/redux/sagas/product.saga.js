@@ -11,6 +11,16 @@ function* fetchProducts() {
     }
 }
 
+function* fetchProductTypes() {
+    try {
+        const productTypes = yield axios.get('/api/productTypes');
+        yield put({ type: 'SET_PRODUCT_TYPES', payload: productTypes.data });
+    } catch (error) {
+        console.log(`Error in fetchProductTypes: ${error}`);
+        alert('Something went wrong!');
+    }
+}
+
 function* fetchProductDetails(action) {
     try {
         const product = yield axios.get(`/api/products/${action.payload}`);
@@ -60,6 +70,7 @@ function* productSaga() {
     yield takeEvery('EDIT_PRODUCT', editProduct);
     yield takeEvery('FETCH_PRODUCT_DETAILS', fetchProductDetails);
     yield takeEvery('DELETE_PRODUCT', deleteProduct);
+    yield takeEvery('FETCH_PRODUCT_TYPES', fetchProductTypes);
 }
 
 export default productSaga;

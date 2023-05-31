@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
                              JOIN "topEffect" ON "products"."top_effect_id" = "topEffect"."id"
                              WHERE "user_id" = $1;`
     pool.query(queryText, [req.user.id]).then((result) => {
+      console.log(result.rows)
       res.send(result.rows);
     }).catch((error) => {
       console.log(error);
