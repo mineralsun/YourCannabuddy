@@ -36,7 +36,8 @@ function Stash() {
     useEffect(() => {
         dispatch({ type: 'FETCH_PRODUCTS' });
         dispatch({ type: 'FETCH_PRODUCT_TYPES'});
-        // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
+        dispatch({ type: 'FETCH_SPECIFIC_PRODUCT_TYPES'});
+        dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
     }, [productId]);
 
     const favStatus = (product) => {
@@ -81,6 +82,11 @@ function Stash() {
         dispatch({ type: 'DELETE_PRODUCT', payload: id })
     }
 
+    const filterByType = (product) => {
+        console.log('In filterByType for productType')
+        dispatch ({ type: 'FETCH_SPECIFIC_PRODUCT_TYPES', payload: product.product_id})
+    }
+
     return (
         <main>
             <h1 className="stash-title">Your Stash!</h1>
@@ -104,15 +110,14 @@ function Stash() {
                                 Filter By Product Type:
                             </h4>
                             <ul>
-                                <p>Favorites</p>
+                                <l1 onClick={() => filterByType()}>Favorites</l1>
                             </ul>
                             {
                                 productTypes.map((type) => {
                                     return (
                                         <ul className="productTypes">
-                                            <p key={type.id} >
-                                                {type.typeName}
-                                            </p>
+                                            <button onClick={() => filterByType(type)}>{type.typeName}</button>
+                                            <l1 key={type.id} onClick={() => filterByType(type)}>{type.typeName}</l1>
                                         </ul>
                                     )
                                 })

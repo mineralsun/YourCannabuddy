@@ -138,10 +138,8 @@ input {
   font-size: 16px;
   color: papayawhip;
   display: block;
-  padding-bottom: full;
-  margin-bottom: full;
   /* How do i get the thing to expand */
-  border-bottom: fill solid green;
+  border: none;
 }
 
 .productTypeNav ul:hover {

@@ -2,15 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// function* fetchProductTypes() {
-//     try {
-//         const productTypes = yield axios.get('/api/products');
-//         yield put({ type: 'SET_PRODUCTS', payload: products.data });
-//     } catch (error) {
-//         console.log(`Error in fetchProducts: ${error}`);
-//         alert('Something went wrong!');
-//     }
-// }
 
 router.get('/', (req, res) => {
     console.log('/productType GET route');
