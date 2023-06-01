@@ -43,14 +43,11 @@ router.get('/:id', (req, res) => {
 
 router.get('/:id', (req, res) => {
   console.log(req.body)
-  const queryText = `SELECT "products".*, 
-                    "topEffect"."top_effect_name" AS "top_effect_id", 
-                    "productType"."typeName" AS "product_id"
+  const queryText = `SELECT "products".*, "productType"."typeName" AS "product_id"
                      FROM "products"
                      JOIN "productType" ON "products"."product_id" = "productType"."id"
-                     JOIN "topEffect" ON "products"."top_effect_id" = "topEffect"."id"
-                     WHERE "user_id" = $1 AND "product_id" = $2;`;
-  pool.query(queryText, [req.user.id, req.params.id])
+                    WHERE "product_id" = $1;`;
+  pool.query(queryText, [req.params.id])
   .then((result) => {
     res.send(result.rows[0]);
   })

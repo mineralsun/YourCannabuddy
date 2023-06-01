@@ -33,11 +33,27 @@ function Stash() {
         history.push('/newproduct');
     }
 
+    let [productArray] = useState([]);
+    
+
+    const checkFilter = (product) => {
+        console.log(product)
+        console.log(productArray)
+        productArray.push(product.product_id)
+        return productArray[0];
+    }
+    
+    const filteredProducts = productArray.filter(checkFilter);
+
     useEffect(() => {
+        if (productArray.length > 1) {
+            return filteredProducts;
+        } else {
         dispatch({ type: 'FETCH_PRODUCTS' });
         dispatch({ type: 'FETCH_PRODUCT_TYPES'});
-        dispatch({ type: 'FETCH_SPECIFIC_PRODUCT_TYPES'});
-        dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
+        // dispatch({ type: 'FETCH_SPECIFIC_PRODUCT_TYPES'});
+        // dispatch({ type: 'FETCH_PRODUCT_DETAILS', payload: productId });
+        }
     }, [productId]);
 
     const favStatus = (product) => {
@@ -83,9 +99,11 @@ function Stash() {
     }
 
     const filterByType = (product) => {
+        console.log(product)
         console.log('In filterByType for productType')
-        dispatch ({ type: 'FETCH_SPECIFIC_PRODUCT_TYPES', payload: product.product_id})
+        dispatch ({ type: 'FETCH_SPECIFIC_PRODUCT_TYPES', payload: product.id})
     }
+
 
     return (
         <main>
@@ -95,12 +113,40 @@ function Stash() {
                 onClick={navToForm}>
                 Add New Product:
             </Button>
+            <span />
+            <Button 
+            variant="contained"
+            onClick={() => checkFilter(filteredProducts)}>Filter</Button>
+            {
+                filteredProducts.map((product) => {
+                    return (
+                        <div key={products.id} >
+                        <h1>{product.product_name}</h1>
+                        <h3>{product.brand_name}</h3>
+                        <h5>{product.product_id}</h5>
+                        <Rating name="read-only" value={product.rating} readOnly />
+                        <h4>{effectStatus(product)} <br /> {product.top_effect_id}</h4>
+                        <p>{product.comments}</p>
+                        <p>{favStatus(product)}</p>
+                        <Button
+                            variant='contained'
+                            onClick={(event) => editProduct(product)}>
+                            Edit
+                        </Button>
+                        <IconButton>
+                            <DeleteIcon
+                                onClick={(event) => deleteProduct(product.id)} />
+                        </IconButton>
+                    </div>
+                    )
+                })
+            }
             {
                 products.length === 0 ? (
                     <>
                         <br />
                         <div>
-                            Time to try some weed and add your products!
+                           <p>Time to try some weed and add your products!</p> 
                         </div>
                     </>
                 ) : (
@@ -113,11 +159,11 @@ function Stash() {
                                 <l1 onClick={() => filterByType()}>Favorites</l1>
                             </ul>
                             {
-                                productTypes.map((type) => {
+                                productTypes.map((product) => {
                                     return (
                                         <ul className="productTypes">
-                                            <button onClick={() => filterByType(type)}>{type.typeName}</button>
-                                            <l1 key={type.id} onClick={() => filterByType(type)}>{type.typeName}</l1>
+                                            {/* <button onClick={() => filterByType(type)}>{type.typeName}</button> */}
+                                            <l1 onClick={() => checkFilter(product)}>{product.typeName}</l1>
                                         </ul>
                                     )
                                 })
