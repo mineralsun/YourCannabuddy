@@ -20,8 +20,6 @@ import {
 } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-
-
 function Stash() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -32,6 +30,8 @@ function Stash() {
     const navToForm = (event) => {
         history.push('/newproduct');
     }
+
+    
 
     let [productArray] = useState([]);
     
@@ -106,7 +106,7 @@ function Stash() {
 
 
     return (
-        <main>
+        <body className="box">
             <h1 className="stash-title">Your Stash!</h1>
             <Button
                 variant="contained"
@@ -170,18 +170,22 @@ function Stash() {
                             }
                         </nav>
                         <Grid
-                            margin={0}
-                            xs={2} md={2}
-                            padding={2.7}
+                            container spacing={2}
+                            marginLeft={20}
+                            // xs={2} md={2}
+                            padding={3}
                             className="products"
                         >
                             {products.map(product => {
                                 return (
                                     <Box
-                                        border={2}
-                                        padding={4}
-                                        margin={1}
-                                        borderColor={'black'}>
+                                        sx={{
+                                         backgroundColor: 'secondary.main'  
+                                        }}
+                                        border={3}
+                                        padding={0.5}
+                                        margin={0.5}
+                                        borderColor={'#676031'}>
                                         <div key={products.id} >
                                             <h1>{product.product_name}</h1>
                                             <h3>{product.brand_name}</h3>
@@ -209,7 +213,7 @@ function Stash() {
                     </div>
                 )
             }
-        </main>
+        </body>
     )
 }
 

@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import theme from '../Theme/theme';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
     <div className="nav">
       <Link to="/home">
         <h2 className="nav-title">YourCannaBuddy!</h2>
@@ -45,6 +50,7 @@ function Nav() {
 
       </div>
     </div>
+    </ThemeProvider>
   );
 }
 
