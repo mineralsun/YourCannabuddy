@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -23,6 +24,23 @@ import Stash from '../Stash/stash.jsx';
 import NewProductForm from '../NewProductForm/NewProductForm.jsx';
 
 import './App.css';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#31a35d'
+    },
+    secondary: {
+      main: '#285028'
+    },
+    tertiary: {
+      main: '#dcfcec'
+    },
+    quaternary: {
+      main: '#676031'
+    }
+  }
+})
 
 
 function App() {
