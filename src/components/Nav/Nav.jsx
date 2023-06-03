@@ -13,9 +13,9 @@ function Nav() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-    <div className="nav">
+    <div style={{textAlign: 'center'}} className="nav">
       <Link to="/home">
-        <h2 className="nav-title">YourCannaBuddy!</h2>
+        <h2 className="nav-title" style={{textAlign: 'center'}}>YourCannaBuddy!</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}

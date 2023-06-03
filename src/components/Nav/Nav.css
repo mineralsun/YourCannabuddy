@@ -11,13 +11,15 @@
 
 .nav a {
   text-decoration: none;
+  text-align: center;
 }
 
 .nav-title {
+  text-align: center;
   font-size: 36px;
   font-weight: 700;
   color: #dcfcec;
-  padding-left: 10px;
+  padding-left: 200px;
   margin: 0;
 }
 

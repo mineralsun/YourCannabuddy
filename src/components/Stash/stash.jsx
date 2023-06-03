@@ -106,7 +106,7 @@ function Stash() {
 
 
     return (
-        <body className="box">
+        <main className="content">
             <h1 className="stash-title">Your Stash!</h1>
             <Button
                 variant="contained"
@@ -152,9 +152,9 @@ function Stash() {
                 ) : (
                     <div>
                         <nav className="productTypeNav" style={{ textalign: 'center' }}>
-                            <h4 className="productTypeHead" style={{ padding: '25px', top: '10px' }}>
+                            <h3 className="productTypeHead" style={{ padding: '25px', top: '10px' }}>
                                 Filter By Product Type:
-                            </h4>
+                            </h3>
                             <ul>
                                 <l1 onClick={() => filterByType()}>Favorites</l1>
                             </ul>
@@ -218,7 +218,7 @@ function Stash() {
                     </div>
                 )
             }
-        </body>
+        </main>
     )
 }
 
