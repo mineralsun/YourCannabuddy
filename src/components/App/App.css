@@ -159,7 +159,7 @@ input {
   background-color: #31a35d;
   overflow: hidden;
   padding-top: 0;
-  color: papayawhip;
+  color: #dcfcec;
   text-transform: bold;
 }
 
@@ -183,3 +183,46 @@ input {
   color: #dcfcec;
   padding: 20px;
 }
+
+/* TODO CARD/BOX STYLING */
+
+/* #product_name {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#brand_name {
+  text-align: left;
+  text-transform: capitalize;
+}
+
+#product_id {
+  text-align: left;
+}
+
+#product_isFavorite {
+  text-align: right;
+  margin-right: 160px;
+  top: auto;
+  transform: scale(2);
+}
+
+
+#delete_button {
+  align-self: right;
+}
+
+#edit_button {
+  text-align: left;
+}
+
+#top_effect_id {
+  text-align: center;
+}
+
+#product_rating {
+  text-align: right;
+  bottom: 160px;
+  left: 150px;
+  font-size: xx-large;
+} */

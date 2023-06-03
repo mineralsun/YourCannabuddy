@@ -172,7 +172,8 @@ function Stash() {
                         <Grid
                             container spacing={2}
                             marginLeft={20}
-                            // xs={2} md={2}
+                            xs={4}
+                            md={10}
                             padding={3}
                             className="products"
                         >
@@ -182,25 +183,29 @@ function Stash() {
                                         sx={{
                                          backgroundColor: 'secondary.main'  
                                         }}
-                                        border={3}
-                                        padding={0.5}
+                                        border={4}
+                                        padding={0.75}
+                                        
                                         margin={0.5}
+                                        maxWidth={500}
                                         borderColor={'#676031'}>
                                         <div key={products.id} >
-                                            <h1>{product.product_name}</h1>
-                                            <h3>{product.brand_name}</h3>
-                                            <h5>{product.product_id}</h5>
-                                            <Rating name="read-only" value={product.rating} readOnly />
-                                            <h4>{effectStatus(product)} <br /> {product.top_effect_id}</h4>
-                                            <p>{product.comments}</p>
-                                            <p>{favStatus(product)}</p>
+                                            <h1 id='product_name'>{product.product_name}</h1>
+                                            <h3 id='brand_name'>{product.brand_name}</h3>
+                                            <h5 id='product_id'>{product.product_id}</h5>
+                                            <Rating id='product_rating' name="read-only" value={product.rating} readOnly />
+                                            <h4 id='top_effect_id'>{effectStatus(product)} <br /> {product.top_effect_id}</h4>
+                                            <p id='product_comments'>{product.comments}</p>
+                                            <p id='product_isFavorite'>{favStatus(product)}</p>
                                             <Button
+                                                id='edit_button'
                                                 variant='contained'
                                                 onClick={(event) => editProduct(product)}>
                                                 Edit
                                             </Button>
                                             <IconButton>
                                                 <DeleteIcon
+                                                    id='delete_button'
                                                     onClick={(event) => deleteProduct(product.id)} />
                                             </IconButton>
                                         </div>
