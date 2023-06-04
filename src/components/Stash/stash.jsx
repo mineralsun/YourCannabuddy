@@ -45,24 +45,31 @@ function Stash() {
     useEffect(() => {
         if (products.length > 0) {
             setProductArray(products)
+            setFilteredProductArray(products)
         }
+        console.log(products)
     }, [products]);
+
     useEffect(() => {
         if (sFilter !== '') {
             console.log('filled sFilter', sFilter)
             setFilteredProductArray(productArray.filter(product => product.product_id === sFilter))
             console.log('strtrst', filteredProductArray)
+        } else {
+            setProductArray(products)
         }
         if (sFilter === '') {
             setFilteredProductArray(productArray)
             console.log('sFilter', sFilter)
+        } else {
+            setProductArray(products)
         }
     }, [sFilter]);
-
 
     const checkFilter = (product) => {
         setSFilter(product.typeName)
     }
+
     const favStatus = (product) => {
         if (product.isFavorite === true) {
             return (<Favorite />)
@@ -106,6 +113,7 @@ function Stash() {
         console.log('In filterByType for productType')
         dispatch ({ type: 'FETCH_SPECIFIC_PRODUCT_TYPES', payload: product.id})
     }
+
     return (
         <main>
             <div className="content">
@@ -128,6 +136,7 @@ function Stash() {
                                 <h4 className="productTypeHead" style={{ padding: '25px', top: '10px' }}>
                                     Filter By Product Type:
                                 </h4>
+                                {/* MAKE SURE TO ADD THIS AT SOME POINT */}
                                 <ul>
                                     <l1 onClick={() => filterByType()}>Favorites</l1>
                                 </ul>
@@ -161,7 +170,7 @@ function Stash() {
                                             margin={0.5}
                                             maxWidth={500}
                                             borderColor={'#676031'}>
-                                            <div key={products.id} >
+                                            <div key={product.id} >
                                                 <h1 id='product_name'>{product.product_name}</h1>
                                                 <h3 id='brand_name'>{product.brand_name}</h3>
                                                 <h5 id='product_id'>{product.product_id}</h5>
