@@ -8,8 +8,11 @@ import React from 'react';
 function InfoPage() {
   return (
     <div className="container">
-      <p>Not sure I need this page or what I should put here?</p>
-      <a href="https://www.flaticon.com/free-icons/hemp" title="Hemp icons">Hemp icons created by Freepik - Flaticon</a>
+      <body>
+        <h4>“YourCannabudy!” is a cannabis product tracking app that will allow users to log in to a secure profile, add a new product to their “stash”, and also reference and sort through their stash via filters and control through YourCannabuddy.</h4>
+        <li>The future of this application would likely include social features, several different organizational or filtering options, product-picture upload, secondary effects, and educational resources as well.</li>
+        <li>The main function is to break down the barriers of manually tracking cannabis products and personal data in a physical notebook, and store that information in an accessible and easy-to-use website.</li>
+      </body>
     </div>
   );
 }
