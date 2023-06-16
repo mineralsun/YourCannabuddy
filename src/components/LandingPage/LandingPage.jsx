@@ -6,7 +6,7 @@ import './LandingPage.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+  const [heading, setHeading] = useState('Welcome to YourCannaBuddy!');
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -18,10 +18,8 @@ function LandingPage() {
       <h2>{heading}</h2>
 
       <div className="grid">
-        <div className="grid-col grid-col_8">
-        </div>
         <div className="grid-col grid-col_4">
-          <RegisterForm />
+          <RegisterForm id="registerForm"/>
 
           <center>
             <h4>Already a Member?</h4>

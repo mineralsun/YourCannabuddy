@@ -2,24 +2,30 @@
 Grid
 -------------------------------------------------------------------------------- */
 
-.grid {
+/* .grid {
   display: flex;
   flex: 0 1 auto;
-  /* defaults to 'row' */
+
   flex-direction: row;
   flex-wrap: wrap;
-  /* defaults to 'flex-start' */
+
   justify-content: flex-start;
   align-items: flex-start;
+} */
+
+#registerForm {
+  align-self: center;
 }
 
 .grid-col {
   flex: 0 0 auto;
   padding: 0 0.5rem 0.5rem;
   box-sizing: border-box;
+  align-items: center;
+  text-align: center;
 }
 
-.grid-col_1 {
+/* .grid-col_1 {
   flex-basis: 8.33333333%;
   max-width: 8.33333333%;
 }
@@ -32,11 +38,13 @@ Grid
 .grid-col_3 {
   flex-basis: 25%;
   max-width: 25%;
-}
+} */
 
 .grid-col_4 {
   flex-basis: 33.33333333%;
   max-width: 33.33333333%;
+  align-items: center;
+  text-align: center;
 }
 
 .grid-col_5 {

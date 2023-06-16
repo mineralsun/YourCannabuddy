@@ -89,7 +89,7 @@ function App() {
 
             <Route
               exact
-              path="/login"
+              path="/home"
             >
               {user.id ?
                 // If the user is already logged in, 
@@ -115,9 +115,9 @@ function App() {
               }
             </Route>
 
-            <Route
+            {/* <Route
               exact
-              path="/home"
+              path="/login"
             >
               {user.id ?
                 // If the user is already logged in, 
@@ -127,7 +127,7 @@ function App() {
                 // Otherwise, show the Landing page
                 <LandingPage />
               }
-            </Route>
+            </Route> */}
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
